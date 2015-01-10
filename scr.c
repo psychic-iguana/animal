@@ -5,6 +5,8 @@
  */
 
 #include <curses.h>
+#include <string.h>
+#include "scr.h"
 
 #define HEAD "Animal"
 
@@ -13,9 +15,9 @@ static WINDOW *FileMsg;
 static WINDOW *QuestAns;
 static WINDOW *QuestAnsBorder;
 
-void InitCurses()
-
-	{
+void
+InitCurses(void)
+{
 	initscr();
 #ifdef BOGUS_ECHO
 	echo();
@@ -52,13 +54,11 @@ void InitCurses()
 	wrefresh(QuestAnsBorder);
 	wrefresh(QuestAns);
 	return;
-	}
+}
 
-char *FileQuestion(prompt)
-
-char *prompt;
-
-	{
+char *
+FileQuestion(char *prompt)
+{
 	static char answer[256];
 
 	werase(FileMsg);
@@ -74,13 +74,11 @@ char *prompt;
 #endif
 	wgetstr(FileMsg, answer);
 	return answer;
-	}
+}
 
-void PutFileMsg(str)
-
-char *str;
-
-	{
+void
+PutFileMsg(char *str)
+{
 	werase(FileMsg);
 #ifdef BOGUS_BOX
 	box(FileMsg, '|', '-');
@@ -89,69 +87,59 @@ char *str;
 #endif
 	mvwaddstr(FileMsg, 1, 1, str);
 	wrefresh(FileMsg);
-	}
+}
 
-void EndCurses()
-
-	{
+void
+EndCurses(void)
+{
 	delwin(Header);
 	delwin(FileMsg);
 	delwin(QuestAns);
 	delwin(QuestAnsBorder);
 	endwin();
-	}
+}
 
-void PutQuestion(question)
-
-char *question;
-
-	{
+void
+PutQuestion(char *question)
+{
 	wprintw(QuestAns, "%s?", question);
-	}
+}
 
-void PutFinalQuestion(question)
-
-char *question;
-
-	{
+void
+PutFinalQuestion(char *question)
+{
 	char buf[256];
-	void PutQuestion();
 
 	strcpy(buf, "final guess: is it ");
 	strcat(buf, question);
 	PutQuestion(buf);
-	}
+}
 
-void PutMsg(msg)
-
-char *msg;
-
-	{
+void
+PutMsg(char *msg)
+{
 	waddstr(QuestAns, msg);
 	waddch(QuestAns, '\n');
-	}
+}
 
-void GetQuestLine(prompt, reply)
-
-char *prompt;
-char *reply;
-
-	{
+void
+GetQuestLine(char *prompt, char *reply)
+{
 	wprintw(QuestAns, "%s ", prompt);
 #ifdef BOGUS_GET
 	wrefresh(QuestAns);
 #endif
 	wgetstr(QuestAns, reply);
-	}
+}
 
-void StartBold()
-
-	{
+void
+StartBold(void)
+{
 	wstandout(QuestAns);
-	}
+}
 
-void EndBold()
-
-	{
+void
+EndBold(void)
+{
 	wstandend(QuestAns);
-	}
+}

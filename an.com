@@ -1,13 +1,13 @@
-I was poking around a tape containing some of my
-old university stuff and found this.
-
-It's a VAX/VMS Version 3.? DCL implementation of the
-old game 'Animal'.  It should work for later versions
-of VMS.  It supports saving and reading the question
-database.  It is probably one of the most twisted
-implementations of this game.  I was quite proud of
-it when I wrote it.  Use at your own risk!
-
+$! I was poking around a tape containing some of my
+$! old university stuff and found this.
+$! 
+$! It's a VAX/VMS Version 3.? DCL implementation of the
+$! old game 'Animal'.  It should work for later versions
+$! of VMS.  It supports saving and reading the question
+$! database.  It is probably one of the most twisted
+$! implementations of this game.  I was quite proud of
+$! it when I wrote it.  Use at your own risk!
+$! 
 $!Animal meets DCL
 $!Stacey Campbell
 $!August holidays, 1985.

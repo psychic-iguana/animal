@@ -5,32 +5,17 @@
 
 # Unix System 5.3
 
-CC= gcc
-CFLAGS= -O
+CFLAGS := -O2
 LIBS= -lcurses
+LDFLAGS :=
+OBJS := an.o scr.o
+EXE := animal
 
-# BSD
-#
-#CFLAGS= -O -DBOGUS_GET -DBOGUS_BOX
-#LIBS= -lcurses -ltermcap
-#
-
-# Unix System 5.2 (possibly other less advanced SysV ports)
-#
-#CFLAGS= -O -DBOGUS_GET -DBOGUS_BOX
-#LIBS= -lcurses
-#
-
-LDFLAGS= -O
-OBJS= an.o scr.o
-SRC= an.c scr.c
-EXE= animal
-
-$(EXE): $(OBJS)
+$(EXE): $(OBJS) $(EXE).man
 	$(CC) $(LDFLAGS) $(OBJS) -o $(EXE) $(LIBS)
 
-shar:
-	xshar -v README animal.6 Makefile $(SRC) example > $(EXE).shar
-
-man:
+$(EXE).man:
 	nroff -man animal.6 > $(EXE).man
+
+clean:
+	rm -f $(OBJS) $(EXE) $(EXE).man

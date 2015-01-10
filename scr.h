@@ -1,0 +1,10 @@
+extern char * FileQuestion(char *prompt);
+extern void EndBold(void);
+extern void EndCurses(void);
+extern void GetQuestLine(char *prompt, char *reply);
+extern void InitCurses(void);
+extern void PutFileMsg(char *str);
+extern void PutFinalQuestion(char *question);
+extern void PutMsg(char *msg);
+extern void PutQuestion(char *question);
+extern void StartBold(void);
